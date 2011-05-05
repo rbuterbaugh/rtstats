@@ -21,8 +21,8 @@ var tcpServer =
   .listen(8081);
 
 function formatAndSend(line) {
-  var regexp=/^([0-9\.]+) [^\s]+ [^\s]+ \[([a-zA-Z0-9\/]+):([0-9:]+) ([0-9-]+)\] \"([A-Z]+) ([^\"]+) HTTP\/[0-9\.]+\" ([0-9-]+) ([0-9-]+) \"([^\"]+)\" \"([^\"]+)\"$/;
-  var matches=regexp.exec(line.trim());
+  var apacheCombined=/^([0-9\.]+) [^\s]+ [^\s]+ \[([a-zA-Z0-9\/]+):([0-9:]+) ([0-9-]+)\] \"([A-Z]+) ([^\"]+) HTTP\/[0-9\.]+\" ([0-9-]+) ([0-9-]+) \"([^\"]+)\" \"([^\"]+)\"$/;
+  var matches=apacheCombined.exec(line.trim());
   var matchObj= {
     ip: matches[1],
     date: matches[2],
@@ -38,10 +38,15 @@ function formatAndSend(line) {
   ioSocket.broadcast(JSON.stringify(matchObj));
 }
 
+var recordsSent=0;
 function processBuffer() {
   var firstNewline=buffer.indexOf("\n");
   while (firstNewline > -1) {
     formatAndSend(buffer.substr(0,firstNewline));
+    recordsSent++;
+    if (recordsSent % 100 == 0) {
+      console.log(recordsSent+" records sent");
+    }
     buffer=buffer.substr(firstNewline+1);
     firstNewline=buffer.indexOf("\n");
   }
