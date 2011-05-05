@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>RealTime Stats</title>
+</head>
+<body>
+<script type="text/javascript" src="jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="libraries.js"></script>
+<script type="text/javascript">WEB_SOCKET_SWF_LOCATION="socket.io/lib/vendor/web-socket-js/WebSocketMain.swf";</script>
+<script type="text/javascript" src="socket.io/socket.io.js"></script> 
+<script type="text/javascript" src="rtstats.js"></script>
+<div style="float:left">
+  <div id="active-users" style="font-weight:bold;font-size:24px;line-height:26px;text-align:center;width:300px">0</div>
+  <div style="width:300px;text-align:center"><strong>Active Users</strong></div>
+</div>
+<div style="float:left;margin-left:10px">
+  <div style="text-align:center;width:600px"><strong>Popular Pages</strong></div>
+  <div id="popular-pages" style="border: 1px solid black;width:600px;padding:3px"></div>
+</div>
+<div style="clear:both;height:20px"></div>
+<div style="float:left">
+  <div style="text-align:center;width:300px"><strong>Current Hosts</strong></div>
+  <div id="current-connections" style="border: 1px solid black;min-width:300px;padding:3px"></div>
+</div>
+<div style="float:left;margin-left:10px">
+  <div style="text-align:center;width:600px"><strong>Recent Referers</strong></div>
+  <div id="recent-referers" style="border: 1px solid black;width:600px;padding:3px"></div>
+</div>
+</body>
+</html>
