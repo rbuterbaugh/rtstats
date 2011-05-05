@@ -2,8 +2,8 @@ Realtime Statistics
 -------------------
 
 Just a test of node.js and socket.io to create a real-time website statistics
-dashboard using Apache combined logs. Originally created to monitor players
-on [Wabble][].
+dashboard using Apache combined logs. Originally created to monitor server
+status and users on [Wabble][].
 
   [wabble]: http://www.wabble.org/
 
