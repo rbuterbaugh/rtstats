@@ -39,15 +39,22 @@ function formatAndSend(line) {
 }
 
 var recordsSent=0;
+var startTime=ts();
+
 function processBuffer() {
   var firstNewline=buffer.indexOf("\n");
   while (firstNewline > -1) {
     formatAndSend(buffer.substr(0,firstNewline));
     recordsSent++;
     if (recordsSent % 100 == 0) {
-      console.log(recordsSent+" records sent");
+      var hz=parseInt(recordsSent/((ts()-startTime)/1000),10);
+      console.log(recordsSent+" records sent ("+hz+"/sec)");
     }
     buffer=buffer.substr(firstNewline+1);
     firstNewline=buffer.indexOf("\n");
   }
+}
+
+function ts() {
+  return new Date().getTime();
 }
